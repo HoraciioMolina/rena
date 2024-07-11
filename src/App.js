@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { scroller } from 'react-scroll';
 import './style-nombre.css';
+import './style-corazon.css';
 import './App.scss'; // Asegúrate de que Tailwind esté configurado correctamente
 import videoBola from './assets/bola-disc.mp4';
 import videoPrincipal from './assets/15484549-hd_1920_1080_30fps.mp4';
 import imgCorazones from './assets/Captura de pantalla 2024-07-08 202734.png';
+import imgPared from './assets/pngtree-3d-illustration-of-a-neon-lit-brick-wall-picture-image_5829071.jpg';
 import debounce from 'lodash/debounce';
+import { Estrella } from './estrella';
 
 const Name = ({ letters }) => {
   useEffect(() => {
@@ -72,7 +75,7 @@ const Card = ({ className, children }) => (
 );
 
 const App = () => {
-  const sections = ['section1', 'section2', 'section3'];
+  const sections = ['section1', 'section2', 'section3', 'section4'];
   const [currentSection, setCurrentSection] = useState(0);
 
   // Función debounce para manejar el desplazamiento
@@ -95,7 +98,7 @@ const App = () => {
     return () => {
       window.removeEventListener('wheel', handleScroll);
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentSection]);
 
   useEffect(() => {
@@ -104,7 +107,7 @@ const App = () => {
       delay: 0,
       smooth: 'easeInOutQuart'
     });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentSection]);
 
   return (
@@ -115,15 +118,10 @@ const App = () => {
 
       <InfoSection id="section2" imgSrc={imgCorazones}>
         <Card className="misa-banco">
-          Que estos 15 años que hoy comienzo a vivir
-          y de los cuales no me olvidare jamas
-          sean el despertar de un largo
-          dulce camino por la vida.
-          Sera un placer compartir contigo
-          este feliz acontecimiento
+          𝒬𝓊𝑒 𝑒𝓈𝓉𝑜𝓈 𝟣𝟧 𝒶𝓃̃𝑜𝓈 𝓆𝓊𝑒 𝒽𝑜𝓎 𝒸𝑜𝓂𝒾𝑒𝓃𝓏𝑜 𝒶 𝓋𝒾𝓋𝒾𝓇 𝓎 𝒹𝑒 𝓁𝑜𝓈 𝒸𝓊𝒶𝓁𝑒𝓈 𝓃𝑜 𝓂𝑒 𝑜𝓁𝓋𝒾𝒹𝒶𝓇𝑒 𝒿𝒶𝓂𝒶𝓈 𝓈𝑒𝒶𝓃 𝑒𝓁 𝒹𝑒𝓈𝓅𝑒𝓇𝓉𝒶𝓇 𝒹𝑒 𝓊𝓃 𝓁𝒶𝓇𝑔𝑜 𝒹𝓊𝓁𝒸𝑒 𝒸𝒶𝓂𝒾𝓃𝑜 𝓅𝑜𝓇 𝓁𝒶 𝓋𝒾𝒹𝒶. 𝒮𝑒𝓇𝒶 𝓊𝓃 𝓅𝓁𝒶𝒸𝑒𝓇 𝒸𝑜𝓂𝓅𝒶𝓇𝓉𝒾𝓇 𝒸𝑜𝓃𝓉𝒾𝑔𝑜 𝑒𝓈𝓉𝑒 𝒻𝑒𝓁𝒾𝓏 𝒶𝒸𝑜𝓃𝓉𝑒𝒸𝒾𝓂𝒾𝑒𝓃𝓉𝑜
         </Card>
         <section class="portfolio-experiment">
-          <a  rel="noreferrer" target='_blank' href='https://maps.app.goo.gl/bqzcFiTJZ5hZwi9H8'>
+          <a rel="noreferrer" target='_blank' href='https://maps.app.goo.gl/bqzcFiTJZ5hZwi9H8'>
             <span class="text">Como Llegar</span>
             <span class="line -right"></span>
             <span class="line -top"></span>
@@ -132,12 +130,12 @@ const App = () => {
           </a>
         </section>
         <Card className="misa-banco">
-          <div>Ceremonia</div>
-          <div style={{ fontSize: '2rem' }}>20</div>
-          <div>de Julio</div>
-          <div>a las 19:00 hs</div>
-          <div>Parroquia San Juan Bosco</div>
-          <div>Av. Mitre 312</div>
+          <div>𝓒𝒆𝓻𝒆𝓶𝓸𝓷𝓲𝓪</div>
+          <div style={{ fontSize: '2rem' }}>𝟤𝟢</div>
+          <div>𝒹𝑒 𝒥𝓊𝓁𝒾𝑜</div>
+          <div>𝒶 𝓁𝒶𝓈 𝟣𝟫:𝟢𝟢 𝒽𝓈</div>
+          <div>𝒫𝒶𝓇𝓇𝑜𝓆𝓊𝒾𝒶 𝒮𝒶𝓃 𝒥𝓊𝒶𝓃 𝐵𝑜𝓈𝒸𝑜</div>
+          <div>𝒜𝓋. 𝑀𝒾𝓉𝓇𝑒 𝟥𝟣𝟤</div>
         </Card>
       </InfoSection>
 
@@ -145,31 +143,61 @@ const App = () => {
         <div className="cards-vertical">
           <Card className="info-fiesta ">
             Hay momentos inolvidables que se atesoran en el
-              corazon para siempre, por esa razon,
-              quiero que compartas conmigo este dia tan especial
-              Será una noche para celebrar la vida, la amistad y el comienzo de nuevas aventuras.
+            corazon para siempre, por esa razon,
+            quiero que compartas conmigo este dia tan especial
+            Será una noche para celebrar la vida, la amistad y el comienzo de nuevas aventuras.
             <div>Mis 15 Años</div>
           </Card>
           <section class="portfolio-experiment">
-          <a rel="noreferrer" target='_blank' href='https://maps.app.goo.gl/SdjNsKU8BJt4Bw2Y8'>
-            <span class="text">Como Llegar</span>
-            <span class="line -right"></span>
-            <span class="line -top"></span>
-            <span class="line -left"></span>
-            <span class="line -bottom"></span>
-          </a>
-        </section>
+            <a rel="noreferrer" target='_blank' href='https://maps.app.goo.gl/SdjNsKU8BJt4Bw2Y8'>
+              <span class="text">Como Llegar</span>
+              <span class="line -right"></span>
+              <span class="line -top"></span>
+              <span class="line -left"></span>
+              <span class="line -bottom"></span>
+            </a>
+          </section>
           <Card className="info-fiesta ">
-          <div>Fiesta</div>
-          <div style={{ fontSize: '3rem' }}>7</div>
-          <div>de Septiembre</div>
-          <div>22 hs / Salon Conticello</div>
-          <div>Dress code: Elegante </div>
-          <div>Ruta 9 kilometro 1301</div>
+            <div>Fiesta</div>
+            <div style={{ fontSize: '3rem' }}>7</div>
+            <div>de Septiembre</div>
+            <div>22 hs / Salon Conticello</div>
+            <div>Dress code: Elegante </div>
+            <div>Ruta 9 kilometro 1301</div>
           </Card>
-          
+
         </div>
       </VideoSection>
+
+      <InfoSection id="section4" imgSrc={imgPared}>
+        <Card className="misa-banco">
+          Necesitamos que confirmes tu presencia antes
+          del Sábado 17 de Agosto
+          <div class="heart ">
+            <div class="heartbeat">✅</div>
+            <div class="heartecho-left">✅</div>
+            <a rel="noreferrer" target='_blank' href='https://forms.gle/sVCAKjkKd13YDwoeA' style={{ textDecoration: 'none', color: 'white' }}>
+              <span class="text">Confirmar Presencia</span>
+              </a>
+            <div class="heartbeat">✅</div>
+            <div class="heartecho-right">✅</div>
+          </div>
+        </Card>
+        <Estrella />
+
+        <Card className="misa-banco">
+          El mejor regalo será tu presencia,
+          pero si quieres tener un detalle,
+          puedes hacerlo aqui
+          <div class="heart">
+            <div class="heartbeat">❤️</div>
+            <div class="heartecho-left">❤️</div>
+            Alias: renamolinaa
+            <div class="heartbeat">❤️</div>
+            <div class="heartecho-right">❤️</div>
+          </div>
+        </Card>
+      </InfoSection>
     </>
   );
 };
