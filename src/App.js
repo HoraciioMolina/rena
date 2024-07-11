@@ -122,7 +122,7 @@ const App = () => {
           este feliz acontecimiento
         </Card>
         <section class="portfolio-experiment">
-          <a target='_blank' href='https://maps.app.goo.gl/bqzcFiTJZ5hZwi9H8'>
+          <a  rel="noreferrer" target='_blank' href='https://maps.app.goo.gl/bqzcFiTJZ5hZwi9H8'>
             <span class="text">Como Llegar</span>
             <span class="line -right"></span>
             <span class="line -top"></span>
@@ -150,7 +150,7 @@ const App = () => {
             <div>Mis 15 Años</div>
           </Card>
           <section class="portfolio-experiment">
-          <a target='_blank' href='https://maps.app.goo.gl/SdjNsKU8BJt4Bw2Y8'>
+          <a rel="noreferrer" target='_blank' href='https://maps.app.goo.gl/SdjNsKU8BJt4Bw2Y8'>
             <span class="text">Como Llegar</span>
             <span class="line -right"></span>
             <span class="line -top"></span>
