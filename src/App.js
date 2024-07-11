@@ -48,7 +48,7 @@ const Name = ({ letters }) => {
 const VideoSection = ({ id, videoSrc, children, containerClass }) => (
   <div name={id} className={containerClass}>
     {children}
-    <video autoPlay muted loop>
+    <video autoPlay muted loop controls={false} >
       <source src={videoSrc} type="video/mp4" />
     </video>
   </div>
@@ -144,10 +144,10 @@ const App = () => {
       <VideoSection id="section3" videoSrc={videoBola} containerClass="video-container bola">
         <div className="cards-vertical">
           <Card className="info-fiesta ">
-          Después de la Misa, los invitamos a unirse la Fiesta. Será una noche para celebrar la vida, la amistad y el comienzo de nuevas aventuras.
             Hay momentos inolvidables que se atesoran en el
               corazon para siempre, por esa razon,
               quiero que compartas conmigo este dia tan especial
+              Será una noche para celebrar la vida, la amistad y el comienzo de nuevas aventuras.
             <div>Mis 15 Años</div>
           </Card>
           <section class="portfolio-experiment">
