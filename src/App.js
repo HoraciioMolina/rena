@@ -5,7 +5,6 @@ import './App.scss'; // Asegúrate de que Tailwind esté configurado correctamen
 import videoBola from './assets/bola-disc.mp4';
 import videoPrincipal from './assets/15484549-hd_1920_1080_30fps.mp4';
 import imgCorazones from './assets/Captura de pantalla 2024-07-08 202734.png';
-import imgQuince from './assets/frame-6775244_1280.png';
 import debounce from 'lodash/debounce';
 
 const Name = ({ letters }) => {
@@ -96,6 +95,7 @@ const App = () => {
     return () => {
       window.removeEventListener('wheel', handleScroll);
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentSection]);
 
   useEffect(() => {
@@ -104,6 +104,7 @@ const App = () => {
       delay: 0,
       smooth: 'easeInOutQuart'
     });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentSection]);
 
   return (
