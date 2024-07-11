@@ -1,0 +1,315 @@
+body::-webkit-scrollbar {
+    width: 8px;
+    background-color: #eceef5;
+    border-radius: 20px;
+}
+
+body::-webkit-scrollbar:window-inactive {
+    display: none;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: rgb(245, 183, 183);
+    border-radius: 6px;
+}
+
+.imgQuince {
+    position: absolute;
+    z-index: 1;
+    width: 30rem;
+    top: 0;
+}
+
+
+.textQuince { 
+    position: absolute;
+    z-index: 1;
+    top: 8rem;
+    font-size: 10rem;
+	text-shadow: 0 0 30px #fff;
+
+    @media screen and (max-width: 774px) {
+    top: 8rem;
+
+		font-size: 8rem;
+		
+	}
+
+	@media screen and (max-width: 650px) {
+		font-size: 6rem;
+        top: 10rem;
+		
+	}
+
+	@media screen and (max-width: 524px) {
+    font-size: 4rem;
+    top: 14rem;
+
+	}
+
+	@media screen and (max-width: 390px) {
+        top: 18rem;
+        font-size: 3rem;
+	}
+
+}
+
+.video-container {
+    position: relative;
+    height: 100vh;
+    transition: transform 0.3s ease;
+    /* Transición para suavizar el cambio de sección */
+    align-items: center;
+    display: flex;
+    place-content: center;
+}
+
+.bola {
+    filter: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+    flex-direction: row;
+}
+
+.video-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.video-container .caption {
+    z-index: 1;
+    position: absolute;
+    text-align: center;
+    color: #dc0000;
+    padding: 10px;
+    
+}
+
+.segundo {
+    height: 100vh;
+    transition: transform 0.3s ease;
+    box-shadow: inset 0px 0px 19px 1px #a26271;
+    position: relative;
+    /* Transición para suavizar el cambio de sección */
+}
+
+.segundo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(4px);    
+}
+
+.name {
+    font-size: 20rem;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: white !important;
+    filter: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+
+}
+
+.cards-vertical {
+    display: flex;
+    position: absolute;
+    z-index: 5;
+    justify-content: space-evenly;
+    align-items: center;
+    font-weight: 400;
+    width: 100%;
+
+    @media only screen and (max-width: 1246px) {
+        flex-direction: column;
+    }
+}
+
+
+.cardsInfoMedio {
+    display: flex;
+    position: absolute;
+    z-index: 5;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    font-weight: 400;
+
+    @media only screen and (max-width: 1246px) {
+        flex-direction: column;
+    }
+}
+
+.card {
+    background-color: rgb(187 187 187 / 50%);
+    border-radius: 5px;
+    box-shadow: 0px 0px 20px 7px rgb(225 225 225 / 71%);
+    color: white;
+    flex: 1;
+    border-radius: 1rem;
+    
+}
+
+.misa-banco {
+    padding: 1rem;
+    max-width: 30rem;
+    margin: 2rem;
+    font-size: xx-large;
+    text-align: center;
+    text-shadow: 0 0 30px #fff;
+
+    @media only screen and (max-width: 1246px) {
+    max-width: 25rem;
+    font-size: x-large;
+    }
+}
+
+
+.info-fiesta {
+    margin-bottom: 10rem;
+    padding: 1rem;
+    max-width: 40rem;
+    margin: 1rem;
+    font-size: xx-large;
+    text-align: center;
+    text-shadow: 0 0 30px #fff;
+
+    @media only screen and (max-width: 1246px) {
+        font-size: x-large;
+
+    }
+}
+
+$thick : 3px;
+$pad : 0.7em;
+$extra : calc(#{$pad} * 1.2);
+$color : linear-gradient(45deg, #da22f2, #617eff, #e856d9, #f85252);
+
+
+.portfolio-experiment {
+  background: rgb(187 187 187 / 50%);
+  
+  a {
+    color: white;
+    text-decoration: none;
+    padding: $pad $extra;
+    display: inline-block;
+    border: $thick solid transparent;
+    position: relative;
+    font-size: 1.5em;
+    cursor: pointer;
+    letter-spacing: 0.07em;
+
+    .text {
+      // padding: 0 0.3em;
+      transform: translate3d(0,$pad,0);
+      display: block;
+      transition: transform 0.4s cubic-bezier(.2,0,0,1) 0.4s;
+    }
+
+    &:after {
+      position: absolute;
+      content: '';
+      bottom: -$thick;
+      left: $extra;
+      right: $extra;
+      height: $thick;
+      background: $color;
+      // z-index: -1;
+      transition: 
+        transform 0.8s cubic-bezier(1,0,.37,1) 0.2s,
+        right 0.2s cubic-bezier(.04,.48,0,1) 0.6s,
+        left 0.4s cubic-bezier(.04,.48,0,1) 0.6s;
+      transform-origin: left;
+    }
+
+  }
+
+  .line {
+    position: absolute;
+    background: $color;
+
+    &.-right,
+    &.-left {
+      width: $thick;
+      bottom: -$thick;
+      top: -$thick;
+      transform: scale3d(1,0,1);
+    }  
+
+    &.-top,
+    &.-bottom {
+      height: $thick;
+      left: -$thick;
+      right: -$thick;
+      transform: scale3d(0,1,1);
+    }
+
+    &.-right {
+      right: -$thick;
+      transition: transform 0.1s cubic-bezier(1,0,.65,1.01) 0.23s;
+      transform-origin: top;
+    }
+
+    &.-top {
+      top: -$thick;
+      transition: transform 0.08s linear 0.43s;
+      transform-origin: left;
+    }
+
+    &.-left {
+      left: -$thick;
+      transition: transform 0.08s linear 0.51s;
+      transform-origin: bottom;
+    }
+
+    &.-bottom {
+      bottom: -$thick;
+      transition: transform 0.3s cubic-bezier(1,0,.65,1.01);
+      transform-origin: right;
+    }  
+  }
+
+  a:hover,
+  a:active {
+
+    .text {
+      transform: translate3d(0,0,0);
+      transition: transform 0.6s cubic-bezier(.2,0,0,1) 0.4s;
+    }
+
+    &:after {
+      transform: scale3d(0,1,1);
+      right: -$thick;
+      left: -$thick;
+      transform-origin: right;
+      transition: 
+        transform 0.2s cubic-bezier(1,0,.65,1.01) 0.17s,
+        right 0.2s cubic-bezier(1,0,.65,1.01),
+        left 0s 0.3s;
+    }
+
+    .line {
+      transform: scale3d(1,1,1);
+
+      &.-right {
+        transition: transform 0.1s cubic-bezier(1,0,.65,1.01) 0.2s;
+        transform-origin: bottom;
+      }
+
+      &.-top {
+        transition: transform 0.08s linear 0.4s;
+        transform-origin: right;
+      }
+
+      &.-left {
+        transition: transform 0.08s linear 0.48s;
+        transform-origin: top;
+      }
+
+      &.-bottom {
+        transition: transform 0.5s cubic-bezier(0,.53,.29,1) 0.56s;
+        transform-origin: left;
+      }
+    }
+
+  }
+}
