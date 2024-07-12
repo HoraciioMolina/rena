@@ -8,7 +8,6 @@ import videoPrincipal from './assets/15484549-hd_1920_1080_30fps.mp4';
 import imgCorazones from './assets/Captura de pantalla 2024-07-08 202734.png';
 import imgPared from './assets/pngtree-3d-illustration-of-a-neon-lit-brick-wall-picture-image_5829071.jpg';
 import debounce from 'lodash/debounce';
-import { Estrella } from './estrella';
 
 import audio1 from './assets/Ed Sheeran - Photograph Lyrics .mp3'; // Importa tus archivos de audio
 import audio2 from './assets/cach.mp3'; // Importa tus archivos de audio
@@ -172,18 +171,18 @@ const App = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentSection]);
 
-  const toggleAudio = () => {
-    if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.pause();
-      } else {
-        audioRef.current.play().catch((error) => {
-          console.log('Error al reproducir audio:', error);
-        });
-      }
-      setIsPlaying(!isPlaying);
-    }
-  };
+  // const toggleAudio = () => {
+  //   if (audioRef.current) {
+  //     if (isPlaying) {
+  //       audioRef.current.pause();
+  //     } else {
+  //       audioRef.current.play().catch((error) => {
+  //         console.log('Error al reproducir audio:', error);
+  //       });
+  //     }
+  //     setIsPlaying(!isPlaying);
+  //   }
+  // };
 
   const handleUserInteraction = () => {
     console.log(audioRef.current, isPlaying)
