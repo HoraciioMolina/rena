@@ -283,7 +283,7 @@ const App = () => {
           <div class="heart">
             <div class="heartbeat">❤️</div>
             <div class="heartecho-left">❤️</div>
-            Alias: renamolinaa
+            Alias: RENAMOLINAA
             <div class="heartbeat">❤️</div>
             <div class="heartecho-right">❤️</div>
           </div>
