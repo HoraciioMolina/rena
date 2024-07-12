@@ -109,7 +109,9 @@ const App = () => {
   const handleScroll = debounce((event) => {
     event.preventDefault();
 
-    if (event.deltaY > 0) {
+    const delta = event.deltaY || event.detail || event.wheelDelta;
+
+    if (delta > 0) {
       if (currentSection < sections.length - 1) {
         setCurrentSection(currentSection + 1);
       }
@@ -118,7 +120,7 @@ const App = () => {
         setCurrentSection(currentSection - 1);
       }
     }
-  }, 50); // Ajusta el tiempo de debounce según sea necesario
+  }, 100); // Ajusta el tiempo de debounce según sea necesario
 
   const verifiedAudioFunc = () => {
     if (currentSection > 1) {
@@ -126,16 +128,10 @@ const App = () => {
     } else {
       return 0;
     }
-  }; 
+  };
 
   useEffect(() => {
-    if (audioRef.current) {
-      audioRef.current.volume = 0.2;
-    }
-  }, []);
-
-  
-  useEffect(() => {
+    // Manejar el evento de scroll
     window.addEventListener('wheel', handleScroll);
     return () => {
       window.removeEventListener('wheel', handleScroll);
@@ -143,20 +139,18 @@ const App = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentSection]);
 
-
   const reproducirAudio = () => {
-    // Reproduce el audio correspondiente a la sección actual si ya ha sido iniciado
+    // Reproducir el audio correspondiente a la sección actual
     if (audioRef.current) {
-      const verifiedAudio = verifiedAudioFunc(); 
-        if(currentAudio !== verifiedAudio ) {          
-          audioRef.current.src = audioFiles[verifiedAudio];
-          audioRef.current.play().then(() => { 
-            console.log("audio diferente", currentAudio, verifiedAudio);
+      const verifiedAudio = verifiedAudioFunc();
+      if (currentAudio !== verifiedAudio) {
+        audioRef.current.src = audioFiles[verifiedAudio];
+        audioRef.current.play().then(() => {
           setCurrentAudio(verifiedAudio);
-          }).catch((error) => {
-            console.log('Error al reproducir audio:', error);
-          });
-        }
+        }).catch((error) => {
+          console.log('Error al reproducir audio:', error);
+        });
+      }
     }
   };
 
@@ -166,30 +160,28 @@ const App = () => {
       delay: 0,
       smooth: 'easeInOutQuart'
     });
-    reproducirAudio()
-    
+    reproducirAudio();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentSection]);
 
-  // const toggleAudio = () => {
-  //   if (audioRef.current) {
-  //     if (isPlaying) {
-  //       audioRef.current.pause();
-  //     } else {
-  //       audioRef.current.play().catch((error) => {
-  //         console.log('Error al reproducir audio:', error);
-  //       });
-  //     }
-  //     setIsPlaying(!isPlaying);
-  //   }
-  // };
+  const toggleAudio = () => {
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current.play().catch((error) => {
+          console.log('Error al reproducir audio:', error);
+        });
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
 
   const handleUserInteraction = () => {
-    console.log(audioRef.current, isPlaying)
     if (audioRef.current && !isPlaying) {
       audioRef.current.src = audioFiles[0];
       audioRef.current.play();
-      setCurrentAudio(0)
+      setCurrentAudio(0);
       setIsPlaying(true);
     }
   };
@@ -197,6 +189,9 @@ const App = () => {
   return (
     <div onClick={handleUserInteraction}>
       <audio ref={audioRef} loop />
+      <button onClick={toggleAudio} className="floating-button">
+        {isPlaying ? '🔈 Silenciar' : '🔇 Activar sonido'}
+      </button>
       <VideoSection id="section1" videoSrc={videoPrincipal} containerClass="video-container lettersContainer">
         <Name letters="RENATA" />
       </VideoSection>
