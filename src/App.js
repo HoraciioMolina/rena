@@ -273,7 +273,7 @@ const App = () => {
         </Card>
       </InfoSection>
       <InfoSection id="section5" imgSrc={imgAlbum}>
-      <Card className="misa-banco">
+      <Card className="misa-banco album">
         <div>
       <div className="heart">
             <div className="heartbeat">❤️</div>
