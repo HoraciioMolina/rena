@@ -180,6 +180,7 @@ const App = () => {
   const handleUserInteraction = () => {
     if (audioRef.current && !isPlaying) {
       audioRef.current.src = audioFiles[0];
+      audioRef.current.volume = 0.3;
       audioRef.current.play();
       setCurrentAudio(0);
       setIsPlaying(true);
@@ -258,7 +259,7 @@ const App = () => {
           <div class="heart ">
             <div class="heartbeat">✅</div>
             <div class="heartecho-left">✅</div>
-            <a rel="noreferrer" target='_blank' href='https://forms.gle/sVCAKjkKd13YDwoeA' style={{ textDecoration: 'none', color: 'white' }}>
+            <a className='conf-prec' rel="noreferrer" target='_blank' href='https://forms.gle/sVCAKjkKd13YDwoeA' style={{ textDecoration: 'none', color: 'white' }}>
               <span class="text">Confirmar Presencia</span>
               </a>
             <div class="heartbeat">✅</div>
@@ -270,6 +271,7 @@ const App = () => {
           El mejor regalo será tu presencia,
           pero si quieres tener un detalle,
           puedes hacerlo aqui
+          <div>
           <div class="heart">
             <div class="heartbeat">❤️</div>
             <div class="heartecho-left">❤️</div>
@@ -277,12 +279,13 @@ const App = () => {
             <div class="heartbeat">❤️</div>
             <div class="heartecho-right">❤️</div>
           </div>
-          <div class="heart">
+          <div class="heart " style={{ fontSize: 'medium' }}>
             <div class="heartbeat">❤️</div>
             <div class="heartecho-left">❤️</div>
             CBU: 0000003100058979842077
             <div class="heartbeat">❤️</div>
             <div class="heartecho-right">❤️</div>
+          </div>
           </div>
         </Card>
       </InfoSection>

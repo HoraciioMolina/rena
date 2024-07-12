@@ -190,11 +190,36 @@ video {
     }
 }
 
+.floating-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  background-color: #ff4081; /* Color de fondo del botón */
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 16px;
+  z-index: 1000; /* Asegúrate de que el botón esté sobre otros elementos */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para darle un efecto de elevación */
+}
+
+.floating-button:hover {
+  background-color: #e60074; /* Color de fondo al pasar el cursor */
+}
+
 $thick : 3px;
 $pad : 0.7em;
 $extra : calc(#{$pad} * 1.2);
 $color : linear-gradient(45deg, #da22f2, #617eff, #e856d9, #f85252);
 
+.conf-prec {
+  background-color: rgb(193 191 191 / 19%);
+  border-radius: 5px;
+  box-shadow: inset 0px 0px 5px 1px white;
+  padding: 5px;
+}
 
 .portfolio-experiment {
   background: rgb(187 187 187 / 50%);
