@@ -277,6 +277,13 @@ const App = () => {
             <div class="heartbeat">❤️</div>
             <div class="heartecho-right">❤️</div>
           </div>
+          <div class="heart">
+            <div class="heartbeat">❤️</div>
+            <div class="heartecho-left">❤️</div>
+            CBU: 0000003100058979842077
+            <div class="heartbeat">❤️</div>
+            <div class="heartecho-right">❤️</div>
+          </div>
         </Card>
       </InfoSection>
     </div>
