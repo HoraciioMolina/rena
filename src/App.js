@@ -1,16 +1,14 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useRef, useState } from 'react';
-import { scroller } from 'react-scroll';
 import './style-nombre.css';
 import './style-corazon.css';
-import './App.scss'; // Asegúrate de que Tailwind esté configurado correctamente
+import './App.scss';
 import videoBola from './assets/bola-disc.mp4';
 import videoPrincipal from './assets/15484549-hd_1920_1080_30fps.mp4';
 import imgCorazones from './assets/Captura de pantalla 2024-07-08 202734.png';
 import imgPared from './assets/pngtree-3d-illustration-of-a-neon-lit-brick-wall-picture-image_5829071.jpg';
-import debounce from 'lodash/debounce';
-
-import audio1 from './assets/Ed Sheeran - Photograph Lyrics .mp3'; // Importa tus archivos de audio
-import audio2 from './assets/cach.mp3'; // Importa tus archivos de audio
+import audio1 from './assets/Ed Sheeran - Photograph Lyrics .mp3';
+import audio2 from './assets/cach.mp3';
 
 const Name = ({ letters }) => {
   useEffect(() => {
@@ -72,7 +70,7 @@ const VideoSection = ({ id, videoSrc, children, containerClass }) => {
   }, []);
 
   return (
-    <div name={id} className={containerClass}>
+    <div id={id} className={containerClass}>
       {children}
       <video ref={videoRef} autoPlay muted loop controls={false}>
         <source src={videoSrc} type="video/mp4" />
@@ -82,7 +80,7 @@ const VideoSection = ({ id, videoSrc, children, containerClass }) => {
 };
 
 const InfoSection = ({ id, children, imgSrc }) => (
-  <div name={id} className="segundo">
+  <div id={id} className="segundo">
     <div className="cardsInfoMedio">
       {children}
     </div>
@@ -97,52 +95,46 @@ const Card = ({ className, children }) => (
 );
 
 const App = () => {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const sections = ['section1', 'section2', 'section3', 'section4'];
   const [currentSection, setCurrentSection] = useState(0);
   const audioRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentAudio, setCurrentAudio] = useState(-1);
 
-  const audioFiles = [audio1, audio2]; // Configura las secciones con los audios correspondientes
-
-  // Función debounce para manejar el desplazamiento
-  const handleScroll = debounce((event) => {
-    event.preventDefault();
-
-    const delta = event.deltaY || event.detail || event.wheelDelta;
-
-    if (delta > 0) {
-      if (currentSection < sections.length - 1) {
-        setCurrentSection(currentSection + 1);
-      }
-    } else {
-      if (currentSection > 0) {
-        setCurrentSection(currentSection - 1);
-      }
-    }
-  }, 100); // Ajusta el tiempo de debounce según sea necesario
-
-  const verifiedAudioFunc = () => {
-    if (currentSection > 1) {
-      return 1;
-    } else {
-      return 0;
-    }
-  };
+  const audioFiles = [audio1, audio2];
 
   useEffect(() => {
-    // Manejar el evento de scroll
-    window.addEventListener('wheel', handleScroll);
-    return () => {
-      window.removeEventListener('wheel', handleScroll);
+    const options = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.5
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentSection]);
 
-  const reproducirAudio = () => {
-    // Reproducir el audio correspondiente a la sección actual
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const visibleSection = sections.indexOf(entry.target.id);
+          setCurrentSection(visibleSection);
+        }
+      });
+    }, options);
+
+    const sectionElements = sections.map((section) => document.getElementById(section));
+    sectionElements.forEach((sectionElement) => {
+      if (sectionElement) observer.observe(sectionElement);
+    });
+
+    return () => {
+      sectionElements.forEach((sectionElement) => {
+        if (sectionElement) observer.unobserve(sectionElement);
+      });
+    };
+  }, [sections]);
+
+  useEffect(() => {
     if (audioRef.current) {
-      const verifiedAudio = verifiedAudioFunc();
+      const verifiedAudio = currentSection > 1 ? 1 : 0;
       if (currentAudio !== verifiedAudio) {
         audioRef.current.src = audioFiles[verifiedAudio];
         audioRef.current.play().then(() => {
@@ -152,17 +144,7 @@ const App = () => {
         });
       }
     }
-  };
-
-  useEffect(() => {
-    scroller.scrollTo(sections[currentSection], {
-      duration: 800,
-      delay: 0,
-      smooth: 'easeInOutQuart'
-    });
-    reproducirAudio();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentSection]);
+  }, [currentSection, audioFiles, currentAudio]);
 
   const toggleAudio = () => {
     if (audioRef.current) {
@@ -256,14 +238,14 @@ const App = () => {
         <Card className="misa-banco">
           Necesitamos que confirmes tu presencia antes
           del Sábado 17 de Agosto
-          <div class="heart ">
-            <div class="heartbeat">✅</div>
-            <div class="heartecho-left">✅</div>
+          <div className="heart">
+            <div className="heartbeat">✅</div>
+            <div className="heartecho-left">✅</div>
             <a className='conf-prec' rel="noreferrer" target='_blank' href='https://forms.gle/sVCAKjkKd13YDwoeA' style={{ textDecoration: 'none', color: 'white' }}>
-              <span class="text">Confirmar Presencia</span>
+              <span className="text">Confirmar Presencia</span>
               </a>
-            <div class="heartbeat">✅</div>
-            <div class="heartecho-right">✅</div>
+            <div className="heartbeat">✅</div>
+            <div className="heartecho-right">✅</div>
           </div>
         </Card>
 
@@ -272,19 +254,19 @@ const App = () => {
           pero si quieres tener un detalle,
           puedes hacerlo aqui
           <div>
-          <div class="heart">
-            <div class="heartbeat">❤️</div>
-            <div class="heartecho-left">❤️</div>
+          <div className="heart">
+            <div className="heartbeat">❤️</div>
+            <div className="heartecho-left">❤️</div>
             Alias: RENAMOLINAA
-            <div class="heartbeat">❤️</div>
-            <div class="heartecho-right">❤️</div>
+            <div className="heartbeat">❤️</div>
+            <div className="heartecho-right">❤️</div>
           </div>
-          <div class="heart " style={{ fontSize: 'medium' }}>
-            <div class="heartbeat">❤️</div>
-            <div class="heartecho-left">❤️</div>
+          <div className="heart" style={{ fontSize: 'medium' }}>
+            <div className="heartbeat">❤️</div>
+            <div className="heartecho-left">❤️</div>
             CBU: 0000003100058979842077
-            <div class="heartbeat">❤️</div>
-            <div class="heartecho-right">❤️</div>
+            <div className="heartbeat">❤️</div>
+            <div className="heartecho-right">❤️</div>
           </div>
           </div>
         </Card>
