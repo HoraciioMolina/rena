@@ -199,7 +199,7 @@ const App = () => {
 
       <InfoSection id="section2" imgSrc={imgCorazones}>
         <Card className="misa-banco playwrite-cu-letra-cursiva">
-          Que estos 10 años que hoy comienzo a vivir y de los cuales no me olvidare jamas, 
+          Que estos 15 años que hoy comienzo a vivir y de los cuales no me olvidare jamas, 
           sean el despertar de un largo y dulce camino por la vida.
           Sera un placer compartir contigo este feliz acontecimiento.
         </Card>
