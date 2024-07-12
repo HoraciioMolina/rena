@@ -13,6 +13,37 @@ body::-webkit-scrollbar-thumb {
     border-radius: 6px;
 }
 
+video {
+  pointer-events: none;
+}
+
+.floating-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  background-color: #ff4081; /* Color de fondo del botón */
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 16px;
+  z-index: 1000; /* Asegúrate de que el botón esté sobre otros elementos */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para darle un efecto de elevación */
+}
+
+.floating-button:hover {
+  background-color: #e60074; /* Color de fondo al pasar el cursor */
+}
+
+
+.playwrite-cu-letra-cursiva {
+  font-family: "Playwrite CU", cursive;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
 .imgQuince {
     position: absolute;
     z-index: 1;
@@ -152,13 +183,13 @@ body::-webkit-scrollbar-thumb {
     padding: 1rem;
     max-width: 30rem;
     margin: 2rem;
-    font-size: xx-large;
+    font-size: x-large;
     text-align: center;
     text-shadow: 0 0 30px #fff;
 
     @media only screen and (max-width: 1246px) {
     max-width: 25rem;
-    font-size: x-large;
+    font-size: large;
     }
 }
 
@@ -168,12 +199,12 @@ body::-webkit-scrollbar-thumb {
     padding: 1rem;
     max-width: 40rem;
     margin: 1rem;
-    font-size: xx-large;
+    font-size: x-large;
     text-align: center;
     text-shadow: 0 0 30px #fff;
 
     @media only screen and (max-width: 1246px) {
-        font-size: x-large;
+        font-size: large;
 
     }
 }

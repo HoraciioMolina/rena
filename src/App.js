@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { scroller } from 'react-scroll';
 import './style-nombre.css';
 import './style-corazon.css';
@@ -9,6 +9,9 @@ import imgCorazones from './assets/Captura de pantalla 2024-07-08 202734.png';
 import imgPared from './assets/pngtree-3d-illustration-of-a-neon-lit-brick-wall-picture-image_5829071.jpg';
 import debounce from 'lodash/debounce';
 import { Estrella } from './estrella';
+
+import audio1 from './assets/Ed Sheeran - Photograph Lyrics .mp3'; // Importa tus archivos de audio
+import audio2 from './assets/cach.mp3'; // Importa tus archivos de audio
 
 const Name = ({ letters }) => {
   useEffect(() => {
@@ -48,14 +51,36 @@ const Name = ({ letters }) => {
   );
 };
 
-const VideoSection = ({ id, videoSrc, children, containerClass }) => (
-  <div name={id} className={containerClass}>
-    {children}
-    <video autoPlay muted loop controls={false} >
-      <source src={videoSrc} type="video/mp4" />
-    </video>
-  </div>
-);
+const VideoSection = ({ id, videoSrc, children, containerClass }) => {
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      video.addEventListener('contextmenu', (event) => {
+        event.preventDefault();
+      });
+    }
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      if (video) {
+        video.removeEventListener('contextmenu', (event) => {
+          event.preventDefault();
+        });
+      }
+    };
+  }, []);
+
+  return (
+    <div name={id} className={containerClass}>
+      {children}
+      <video ref={videoRef} autoPlay muted loop controls={false}>
+        <source src={videoSrc} type="video/mp4" />
+      </video>
+    </div>
+  );
+};
 
 const InfoSection = ({ id, children, imgSrc }) => (
   <div name={id} className="segundo">
@@ -66,10 +91,8 @@ const InfoSection = ({ id, children, imgSrc }) => (
   </div>
 );
 
-
-
 const Card = ({ className, children }) => (
-  <div className={`card ${className}`}>
+  <div className={`card ${className} playwrite-cu-letra-cursiva`}>
     {children}
   </div>
 );
@@ -77,6 +100,11 @@ const Card = ({ className, children }) => (
 const App = () => {
   const sections = ['section1', 'section2', 'section3', 'section4'];
   const [currentSection, setCurrentSection] = useState(0);
+  const audioRef = useRef(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentAudio, setCurrentAudio] = useState(-1);
+
+  const audioFiles = [audio1, audio2]; // Configura las secciones con los audios correspondientes
 
   // Función debounce para manejar el desplazamiento
   const handleScroll = debounce((event) => {
@@ -93,6 +121,21 @@ const App = () => {
     }
   }, 50); // Ajusta el tiempo de debounce según sea necesario
 
+  const verifiedAudioFunc = () => {
+    if (currentSection > 1) {
+      return 1;
+    } else {
+      return 0;
+    }
+  }; 
+
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.volume = 0.3;
+    }
+  }, []);
+
+  
   useEffect(() => {
     window.addEventListener('wheel', handleScroll);
     return () => {
@@ -101,71 +144,119 @@ const App = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentSection]);
 
+
+  const reproducirAudio = () => {
+    // Reproduce el audio correspondiente a la sección actual si ya ha sido iniciado
+    if (audioRef.current) {
+      const verifiedAudio = verifiedAudioFunc(); 
+        if(currentAudio !== verifiedAudio ) {          
+          audioRef.current.src = audioFiles[verifiedAudio];
+          audioRef.current.play().then(() => { 
+            console.log("audio diferente", currentAudio, verifiedAudio);
+          setCurrentAudio(verifiedAudio);
+          }).catch((error) => {
+            console.log('Error al reproducir audio:', error);
+          });
+        }
+    }
+  };
+
   useEffect(() => {
     scroller.scrollTo(sections[currentSection], {
       duration: 800,
       delay: 0,
       smooth: 'easeInOutQuart'
     });
+    reproducirAudio()
+    
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentSection]);
 
+  const toggleAudio = () => {
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current.play().catch((error) => {
+          console.log('Error al reproducir audio:', error);
+        });
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
+
+  const handleUserInteraction = () => {
+    console.log(audioRef.current, isPlaying)
+    if (audioRef.current && !isPlaying) {
+      audioRef.current.src = audioFiles[0];
+      audioRef.current.play();
+      setCurrentAudio(0)
+      setIsPlaying(true);
+    }
+  };
+
   return (
-    <>
+    <div onClick={handleUserInteraction}>
+      <audio ref={audioRef} loop />
+      <button onClick={toggleAudio} className="floating-button">
+        {isPlaying ? '🔈 Silenciar' : '🔇 Activar sonido'}
+      </button>
       <VideoSection id="section1" videoSrc={videoPrincipal} containerClass="video-container lettersContainer">
         <Name letters="RENATA" />
       </VideoSection>
 
       <InfoSection id="section2" imgSrc={imgCorazones}>
-        <Card className="misa-banco">
-          𝒬𝓊𝑒 𝑒𝓈𝓉𝑜𝓈 𝟣𝟧 𝒶𝓃̃𝑜𝓈 𝓆𝓊𝑒 𝒽𝑜𝓎 𝒸𝑜𝓂𝒾𝑒𝓃𝓏𝑜 𝒶 𝓋𝒾𝓋𝒾𝓇 𝓎 𝒹𝑒 𝓁𝑜𝓈 𝒸𝓊𝒶𝓁𝑒𝓈 𝓃𝑜 𝓂𝑒 𝑜𝓁𝓋𝒾𝒹𝒶𝓇𝑒 𝒿𝒶𝓂𝒶𝓈 𝓈𝑒𝒶𝓃 𝑒𝓁 𝒹𝑒𝓈𝓅𝑒𝓇𝓉𝒶𝓇 𝒹𝑒 𝓊𝓃 𝓁𝒶𝓇𝑔𝑜 𝒹𝓊𝓁𝒸𝑒 𝒸𝒶𝓂𝒾𝓃𝑜 𝓅𝑜𝓇 𝓁𝒶 𝓋𝒾𝒹𝒶. 𝒮𝑒𝓇𝒶 𝓊𝓃 𝓅𝓁𝒶𝒸𝑒𝓇 𝒸𝑜𝓂𝓅𝒶𝓇𝓉𝒾𝓇 𝒸𝑜𝓃𝓉𝒾𝑔𝑜 𝑒𝓈𝓉𝑒 𝒻𝑒𝓁𝒾𝓏 𝒶𝒸𝑜𝓃𝓉𝑒𝒸𝒾𝓂𝒾𝑒𝓃𝓉𝑜
+        <Card className="misa-banco playwrite-cu-letra-cursiva">
+          Que estos 10 años que hoy comienzo a vivir y de los cuales no me olvidare jamas, 
+          sean el despertar de un largo y dulce camino por la vida.
+          Sera un placer compartir contigo este feliz acontecimiento.
         </Card>
-        <section class="portfolio-experiment">
+        <section className="portfolio-experiment playwrite-cu-letra-cursiva">
           <a rel="noreferrer" target='_blank' href='https://maps.app.goo.gl/bqzcFiTJZ5hZwi9H8'>
-            <span class="text">Como Llegar</span>
-            <span class="line -right"></span>
-            <span class="line -top"></span>
-            <span class="line -left"></span>
-            <span class="line -bottom"></span>
+            <span className="text">Como Llegar</span>
+            <span className="line -right"></span>
+            <span className="line -top"></span>
+            <span className="line -left"></span>
+            <span className="line -bottom"></span>
           </a>
         </section>
-        <Card className="misa-banco">
-          <div>𝓒𝒆𝓻𝒆𝓶𝓸𝓷𝓲𝓪</div>
-          <div style={{ fontSize: '2rem' }}>𝟤𝟢</div>
-          <div>𝒹𝑒 𝒥𝓊𝓁𝒾𝑜</div>
-          <div>𝒶 𝓁𝒶𝓈 𝟣𝟫:𝟢𝟢 𝒽𝓈</div>
-          <div>𝒫𝒶𝓇𝓇𝑜𝓆𝓊𝒾𝒶 𝒮𝒶𝓃 𝒥𝓊𝒶𝓃 𝐵𝑜𝓈𝒸𝑜</div>
-          <div>𝒜𝓋. 𝑀𝒾𝓉𝓇𝑒 𝟥𝟣𝟤</div>
+        <Card className="misa-banco playwrite-cu-letra-cursiva">
+          <div style={{ fontSize: 'xx-large' }}>Ceremonia</div>
+          <div style={{ fontSize: '2rem' }}>20</div>
+          <div>de Julio</div>
+          <div>a las 19hs</div>
+          <div>Parroquia San Juan Bosco</div>
+          <div>Av. Mitre 312</div>
         </Card>
       </InfoSection>
 
       <VideoSection id="section3" videoSrc={videoBola} containerClass="video-container bola">
         <div className="cards-vertical">
-          <Card className="info-fiesta ">
+          <Card className="info-fiesta playwrite-cu-letra-cursiva">
             Hay momentos inolvidables que se atesoran en el
             corazon para siempre, por esa razon,
             quiero que compartas conmigo este dia tan especial
-            Será una noche para celebrar la vida, la amistad y el comienzo de nuevas aventuras.
+            Será una noche para celebrar la vida, la amistad y el comienzo de
+            nuevas aventuras.
             <div>Mis 15 Años</div>
           </Card>
-          <section class="portfolio-experiment">
+          <section className="portfolio-experiment playwrite-cu-letra-cursiva">
             <a rel="noreferrer" target='_blank' href='https://maps.app.goo.gl/SdjNsKU8BJt4Bw2Y8'>
-              <span class="text">Como Llegar</span>
-              <span class="line -right"></span>
-              <span class="line -top"></span>
-              <span class="line -left"></span>
-              <span class="line -bottom"></span>
+              <span className="text">Como Llegar</span>
+              <span className="line -right"></span>
+              <span className="line -top"></span>
+              <span className="line -left"></span>
+              <span className="line -bottom"></span>
             </a>
           </section>
-          <Card className="info-fiesta ">
-            <div>Fiesta</div>
+          <Card className="info-fiesta playwrite-cu-letra-cursiva">
+            <div style={{ fontSize: 'xx-large' }}>Fiesta</div>
             <div style={{ fontSize: '3rem' }}>7</div>
             <div>de Septiembre</div>
-            <div>22 hs / Salon Conticello</div>
+            <div>22hs / Salon Conticello</div>
             <div>Dress code: Elegante </div>
-            <div>Ruta 9 kilometro 1301</div>
+            <div>Fiesta Temática</div>
           </Card>
-
         </div>
       </VideoSection>
 
@@ -198,9 +289,8 @@ const App = () => {
           </div>
         </Card>
       </InfoSection>
-    </>
+    </div>
   );
 };
 
 export default App;
-
