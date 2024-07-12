@@ -131,7 +131,7 @@ const App = () => {
 
   useEffect(() => {
     if (audioRef.current) {
-      audioRef.current.volume = 0.3;
+      audioRef.current.volume = 0.2;
     }
   }, []);
 
@@ -198,9 +198,6 @@ const App = () => {
   return (
     <div onClick={handleUserInteraction}>
       <audio ref={audioRef} loop />
-      <button onClick={toggleAudio} className="floating-button">
-        {isPlaying ? '🔈 Silenciar' : '🔇 Activar sonido'}
-      </button>
       <VideoSection id="section1" videoSrc={videoPrincipal} containerClass="video-container lettersContainer">
         <Name letters="RENATA" />
       </VideoSection>
@@ -274,7 +271,6 @@ const App = () => {
             <div class="heartecho-right">✅</div>
           </div>
         </Card>
-        <Estrella />
 
         <Card className="misa-banco">
           El mejor regalo será tu presencia,
