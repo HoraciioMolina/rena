@@ -9,6 +9,7 @@ import imgCorazones from './assets/Captura de pantalla 2024-07-08 202734.png';
 import imgPared from './assets/pngtree-3d-illustration-of-a-neon-lit-brick-wall-picture-image_5829071.jpg';
 import audio1 from './assets/Ed Sheeran - Photograph Lyrics .mp3';
 import audio2 from './assets/cach.mp3';
+import imgAlbum from './assets/kq6cQcQ.jpeg';
 
 const Name = ({ letters }) => {
   useEffect(() => {
@@ -96,7 +97,7 @@ const Card = ({ className, children }) => (
 
 const App = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const sections = ['section1', 'section2', 'section3', 'section4'];
+  const sections = ['section1', 'section2', 'section3', 'section4', 'section5'];
   const [currentSection, setCurrentSection] = useState(0);
   const audioRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -241,7 +242,7 @@ const App = () => {
           <div className="heart">
             <div className="heartbeat">✅</div>
             <div className="heartecho-left">✅</div>
-            <a className='conf-prec' rel="noreferrer" target='_blank' href='https://forms.gle/sVCAKjkKd13YDwoeA' style={{ textDecoration: 'none', color: 'white' }}>
+            <a className='conf-prec' rel="noreferrer" target='_blank' href='https://forms.gle/mMMiM1vMaCJrjgP39' style={{ textDecoration: 'none', color: 'white' }}>
               <span className="text">Confirmar Presencia</span>
               </a>
             <div className="heartbeat">✅</div>
@@ -257,7 +258,7 @@ const App = () => {
           <div className="heart">
             <div className="heartbeat">❤️</div>
             <div className="heartecho-left">❤️</div>
-            Alias: RENAMOLINAA
+            Alias: <span>RENAMOLINAA</span>
             <div className="heartbeat">❤️</div>
             <div className="heartecho-right">❤️</div>
           </div>
@@ -268,6 +269,26 @@ const App = () => {
             <div className="heartbeat">❤️</div>
             <div className="heartecho-right">❤️</div>
           </div>
+          </div>
+        </Card>
+      </InfoSection>
+      <InfoSection id="section5" imgSrc={imgAlbum}>
+      <Card className="misa-banco">
+        <div>
+      <div className="heart">
+            <div className="heartbeat">❤️</div>
+            <div className="heartecho-left">❤️</div>
+            <span>Album</span>
+            <div className="heartbeat">❤️</div>
+            <div className="heartecho-right">❤️</div>
+          </div>
+          </div>
+          <div className="heart">
+            <div className="heartbeat">❤️</div>
+            <div className="heartecho-left">❤️</div>
+            <span>Proximamente</span>
+            <div className="heartbeat">❤️</div>
+            <div className="heartecho-right">❤️</div>
           </div>
         </Card>
       </InfoSection>
