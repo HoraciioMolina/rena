@@ -180,9 +180,34 @@ const App = () => {
         <Name letters="RENATA" />
       </VideoSection>
 
+      <InfoSection id="section5" imgSrc={imgAlbum}>
+
+        <div className="heartbeat"><a style={{ textDecoration: 'none', color: 'white', marginLeft: '10px' }} href='https://drive.google.com/drive/folders/165TRdD0IZYIir2ZPjChb3prS3zJ5ckRV?usp=sharing'>
+          <Card className="misa-banco album">
+            <div>
+              <div className="heart">
+                <div className="heartbeat">❤️</div>
+                <div className="heartecho-left">❤️</div>
+                <span>Album de fotos</span>
+                <div className="heartbeat">❤️</div>
+                <div className="heartecho-right">❤️</div>
+              </div>
+            </div>
+            <div className="heart">
+              <div className="heartbeat">❤️</div>
+              <div className="heartecho-left">❤️</div>
+              Ya llego!
+              <div className="heartbeat">❤️</div>
+              <div className="heartecho-right">❤️</div>
+            </div>
+          </Card>
+        </a>
+        </div>
+      </InfoSection>
+
       <InfoSection id="section2" imgSrc={imgCorazones}>
         <Card className="misa-banco playwrite-cu-letra-cursiva">
-          Que estos 15 años que hoy comienzo a vivir y de los cuales no me olvidare jamas, 
+          Que estos 15 años que hoy comienzo a vivir y de los cuales no me olvidare jamas,
           sean el despertar de un largo y dulce camino por la vida.
           Sera un placer compartir contigo este feliz acontecimiento.
         </Card>
@@ -244,7 +269,7 @@ const App = () => {
             <div className="heartecho-left">✅</div>
             <a className='conf-prec' rel="noreferrer" target='_blank' href='https://forms.gle/mMMiM1vMaCJrjgP39' style={{ textDecoration: 'none', color: 'white' }}>
               <span className="text">Confirmar Presencia</span>
-              </a>
+            </a>
             <div className="heartbeat">✅</div>
             <div className="heartecho-right">✅</div>
           </div>
@@ -255,40 +280,20 @@ const App = () => {
           pero si quieres tener un detalle,
           puedes hacerlo aqui
           <div>
-          <div className="heart">
-            <div className="heartbeat">❤️</div>
-            <div className="heartecho-left">❤️</div>
-            Alias: <span>RENAMOLINAA</span>
-            <div className="heartbeat">❤️</div>
-            <div className="heartecho-right">❤️</div>
-          </div>
-          <div className="heart" style={{ fontSize: 'medium' }}>
-            <div className="heartbeat">❤️</div>
-            <div className="heartecho-left">❤️</div>
-            CBU: 0000003100058979842077
-            <div className="heartbeat">❤️</div>
-            <div className="heartecho-right">❤️</div>
-          </div>
-          </div>
-        </Card>
-      </InfoSection>
-      <InfoSection id="section5" imgSrc={imgAlbum}>
-      <Card className="misa-banco album">
-        <div>
-      <div className="heart">
-            <div className="heartbeat">❤️</div>
-            <div className="heartecho-left">❤️</div>
-            <span>Album</span>
-            <div className="heartbeat">❤️</div>
-            <div className="heartecho-right">❤️</div>
-          </div>
-          </div>
-          <div className="heart">
-            <div className="heartbeat">❤️</div>
-            <div className="heartecho-left">❤️</div>
-            <span>Proximamente</span>
-            <div className="heartbeat">❤️</div>
-            <div className="heartecho-right">❤️</div>
+            <div className="heart">
+              <div className="heartbeat">❤️</div>
+              <div className="heartecho-left">❤️</div>
+              Alias: <span>RENAMOLINAA</span>
+              <div className="heartbeat">❤️</div>
+              <div className="heartecho-right">❤️</div>
+            </div>
+            <div className="heart" style={{ fontSize: 'medium' }}>
+              <div className="heartbeat">❤️</div>
+              <div className="heartecho-left">❤️</div>
+              CBU: 0000003100058979842077
+              <div className="heartbeat">❤️</div>
+              <div className="heartecho-right">❤️</div>
+            </div>
           </div>
         </Card>
       </InfoSection>
